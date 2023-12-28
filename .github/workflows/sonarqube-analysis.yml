@@ -1,1 +1,23 @@
+name: SonarQube Analysis
+
+on:
+  push:
+    branches:
+      - main  # Adjust to your main branch name or other branch names
+
+jobs:
+  sonarqube-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@v2
+        with:
+          sonarLogin: ${{ secrets.SONAR_TOKEN }}
+          projectKey: dev
+          projectName: dev
+          projectVersion: '1.0'
 
